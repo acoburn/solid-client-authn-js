@@ -13,13 +13,13 @@ jobs:
         os: [ubuntu-20.04, windows-2019]
         node-version: [12.x, 10.x]
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1.4.1
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: Cache node modules
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v1
         env:
           cache-name: cache-node-modules
         with:
@@ -32,7 +32,7 @@ jobs:
       - run: npx prettier --check "{packages/*/src,packages/*/__tests__}/**"
       - run: npm audit --audit-level=moderate
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2.1.4
+        uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
           path: ./packages/*/coverage/

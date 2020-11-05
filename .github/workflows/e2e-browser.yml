@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.event.deployment_status.state == 'success'
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v2
       - name: Use Node.js 12.x
-        uses: actions/setup-node@v1.4.1
+        uses: actions/setup-node@v1
       - name: Cache node modules
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v1
         env:
           cache-name: cache-node-modules
         with:
@@ -33,7 +33,7 @@ jobs:
           E2E_TESTCAFE_WAIT_TIME: 10000
       - name: Add status check with successful test result
         id: set-status-check-success
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2
         with:
           route: POST /repos/:repository/statuses/:ref
           repository: ${{ github.repository }}
@@ -49,7 +49,7 @@ jobs:
       - name: Add status check with failed test result
         id: set-status-check-failure
         if: failure()
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@v2
         with:
           route: POST /repos/:repository/statuses/:ref
           repository: ${{ github.repository }}

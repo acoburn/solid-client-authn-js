@@ -26,8 +26,9 @@ export { getClientAuthenticationWithDependencies } from "./dependencies";
 
 // Re-export of types defined in the core module and produced/consumed by our API
 
-export {
-  ILoginInputOptions,
-  ISessionInfo,
-  IStorage,
-} from "@inrupt/solid-client-authn-core";
+import { ILoginInputOptions as ILoginInputOptionsCore } from "@inrupt/solid-client-authn-core";
+
+/** See {@link https://docs.inrupt.com/developer-tools/api/javascript/solid-client-authn-core/interfaces/_ilogininputoptions_.ilogininputoptions.html} */
+export interface ILoginInputOptions extends ILoginInputOptionsCore {}
+
+export { ISessionInfo, IStorage } from "@inrupt/solid-client-authn-core";
